@@ -1,0 +1,30 @@
+pkgname=pacman
+pkgver=v6.0.1
+pkgrel=1
+arch=('x86_64')
+depends=(zstd bash glibc libarchive curl)
+source=(https://gitlab.archlinux.org/$pkgname/$pkgname/-/archive/$pkgver/$pkgname-$pkgver.tar.gz)
+
+build() {
+        cd $pkgname-$pkgver
+
+	meson   --prefix=/usr \
+		-Ddoxygen=enabled \
+		-Dscriptlet-shell=/bin/bash \
+		-Dldconfig=/usr/bin/ldconfig \
+		build
+	ninja -C build
+}
+
+package() {
+	cd $pkgname-$pkgver
+	
+	mkdir -vp $pkgdir
+	export DESTDIR=$pkgdir/
+	
+	ninja -C build install
+
+	cp -f ../../pacman.conf $pkgdir/etc/pacman.conf
+	mkdir -p $pkgdir/etc/pacman.d
+	touch $pkgdir/etc/pacman.d/mirrorlist
+}
