@@ -1,5 +1,5 @@
 pkgname=gcc
-pkgver=11.2.0
+pkgver=12.1.0
 pkgrel=1
 arch=('x86_64')
 source=(https://ftp.gnu.org/gnu/$pkgname/$pkgname-$pkgver/$pkgname-$pkgver.tar.xz)
@@ -9,9 +9,11 @@ depends=(binutils mpfr mpc glibc libxcrypt zstd flex)
 prepare() {
 	cd $pkgname-$pkgver
 
-	sed -e '/static.*SIGSTKSZ/d' \
-	sed -e 's/return kAltStackSize/return SIGSTKSZ * 4/' \
+	sed -e '/static.*SIGSTKSZ/d'
+
+	sed -e 's/return kAltStackSize/return SIGSTKSZ * 4/' /
 		-i libsanitizer/sanitizer_common/sanitizer_posix_libcdep.cpp
+
 	sed -e '/m64=/s/lib64/lib/' \
 		-i.orig gcc/config/i386/t-linux64
 }
