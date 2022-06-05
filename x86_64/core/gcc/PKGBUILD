@@ -10,8 +10,8 @@ prepare() {
 	cd $pkgname-$pkgver
 
 	sed -e '/static.*SIGSTKSZ/d' \
-        sed -e 's/return kAltStackSize/return SIGSTKSZ * 4/' \
-        sed -i libsanitizer/sanitizer_common/sanitizer_posix_libcdep.cpp
+    sed -e 's/return kAltStackSize/return SIGSTKSZ * 4/' \
+		-i libsanitizer/sanitizer_common/sanitizer_posix_libcdep.cpp
 
 	sed -e '/m64=/s/lib64/lib/' \
 		-i.orig gcc/config/i386/t-linux64
