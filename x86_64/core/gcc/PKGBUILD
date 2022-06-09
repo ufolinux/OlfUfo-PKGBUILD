@@ -28,6 +28,8 @@ build1() {
 	--disable-multilib 					\
 	--disable-bootstrap 					\
 	--with-system-zlib
+
+	make
 }
 
 build() {
