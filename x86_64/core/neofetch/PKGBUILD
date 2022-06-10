@@ -1,10 +1,9 @@
-pkgname=neofetch-git
-_pkgname=neofetch
+pkgname=neofetch
 pkgver=3.2.0.r47.gc3c6404
 pkgrel=1
 pkgdesc="A CLI system information tool written in BASH that supports displaying images."
 arch=('any')
-url="https://github.com/ufolinux/${_pkgname}"
+url="https://github.com/ufolinux/${pkgname}"
 license=('MIT')
 provides=($_pkgname)
 conflicts=($_pkgname)
