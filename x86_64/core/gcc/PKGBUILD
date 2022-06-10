@@ -32,8 +32,6 @@ build() {
 	make
 }
 
-}
-
 package() {
 	cd $pkgname-$pkgver
 	cd build
