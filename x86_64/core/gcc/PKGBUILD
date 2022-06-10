@@ -55,4 +55,6 @@ package() {
 
 	mkdir -pv $pkgdir/usr/share/gdb/auto-load/usr/lib
 	mv -v $pkgdir/usr/lib/*gdb.py $pkgdir/usr/share/gdb/auto-load/usr/lib
+
+	strip -d $pkgdir/usr/bin/*
 }
