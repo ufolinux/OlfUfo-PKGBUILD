@@ -33,22 +33,6 @@ build() {
 	libc_cv_slibdir=/lib
 
 	make
-	
-	mkdir -p ../build32
-	cd ../build32
-	CC="gcc -m32" \
-	CXX="g++ -m32" \
-	../configure --prefix=/usr                   \
-	--disable-werror                \
-	--enable-kernel=3.2             \
-	--enable-multi-arch             \
-	--enable-stack-protector=strong \
-	--libdir=/usr/lib32             \
-	--libexecdir=/usr/lib32         \
-	libc_cv_slibdir=/usr/lib32      \
-	i686-pc-linux-gnu
-
-	make
 
 }
 
@@ -74,31 +58,6 @@ package() {
 	# Provided by libxcrypt; keep the old shared library for backwards compatibility
 	rm -f "$pkgdir"/usr/include/crypt.h "$pkgdir"/usr/lib/libcrypt.{a,so}        
 
-	# 32bit
-	cd ../build32	
-	
-	rm -rf DESTDIR	
-	mkdir -p DESTDIR/usr/lib32/
-	sleep 10
-	ls DESTDIR
-	make install_root=$('pwd')/DESTDIR install
-	ls DESTDIR/
-	
-	install -vdm755 $pkgdir/usr/lib32
-	install -vdm755 $pkgdir/include/gnu
-	install -vdm755 $pkgdir/etc/ld.so.conf.d
-	
-	mkdir -vp $pkgdir/usr/lib32/
-	cp -Rv DESTDIR/usr/lib32/* $pkgdir/usr/lib32/
-
-	mkdir -vp $pkgdir/etc/ld.so.conf.d
-	mkdir -vp $pkgdir/lib/
-
-	ln -sv ../usr/lib32/ld-linux.so.2 $pkgdir/lib/ld-linux.so.2
-	ln -sv ../usr/lib32/ld-linux.so.2 $pkgdir/lib/ld-lsb.so.3
-	ln -sv ../lib/locale $pkgdir/usr/lib32/locale
-	echo "/usr/lib32" > $pkgdir/etc/ld.so.conf.d/lib32.conf
-	cd -
 
 	cat > $pkgdir/etc/nsswitch.conf << "EOF"
 # Begin /etc/nsswitch.conf
