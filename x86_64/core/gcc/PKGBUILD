@@ -3,36 +3,40 @@ pkgver=12.1.0
 pkgrel=1
 arch=('x86_64')
 source=(https://ftp.gnu.org/gnu/$pkgname/$pkgname-$pkgver/$pkgname-$pkgver.tar.xz)
-options=(emptydirs lto strip)
+options=(emptydirs !lto strip)
 depends=(binutils mpfr mpc glibc libxcrypt zstd flex)
 
 prepare() {
-	cd $pkgname-$pkgver
+        cd $pkgname-$pkgver
 
-	case $(uname -m) in
-	  x86_64)
-	    sed -e '/m64=/s/lib64/lib/' \
-	        -i.orig gcc/config/i386/t-linux64
-	  ;;
-	esac
+        ln -sf ../isl-${_islver} isl
+
+        case $(uname -m) in
+          x86_64)
+            sed -e '/m64=/s/lib64/lib/' \
+                -i.orig gcc/config/i386/t-linux64
+          ;;
+        esac
 }
 
 build() {
-	cd $pkgname-$pkgver
-	mkdir -v build                                         &&
-	cd    build                                            &&
+        cd $pkgname-$pkgver
+        mkdir -v build                                         &&
+        cd    build                                            &&
 
-	SED=sed 						\
-	../configure --prefix=/usr            			\
-	--enable-languages=c,c++,fortran,go,objc,obj-c++ 	\
-	--disable-multilib 					\
-	--disable-bootstrap 					\
-	--with-system-zlib
+        SED=sed                                                 \
+        ../configure --prefix=/usr                              \
+        --enable-languages=c,c++,fortran,go,objc,obj-c++        \
+        --disable-multilib                                      \
+        --with-system-zlib                                      \
+        --enable-lto                                            \
+        --disable-bootstrap
 
-	make
+        make
 }
 
 package() {
+
 	cd $pkgname-$pkgver
 	cd build
 	make -j1 DESTDIR=$pkgdir install
