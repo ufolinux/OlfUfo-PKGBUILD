@@ -1,0 +1,28 @@
+pkgname=libxcrypt
+pkgver=4.4.27
+pkgrel=1
+pkgdesc='Modern library for one-way hashing of passwords'
+arch=('x86_64')
+url='https://github.com/besser82/libxcrypt/'
+depends=('glibc')
+install=libxcrypt.install
+source=("${url}/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.xz")
+
+build() {
+	cd "${pkgname}-${pkgver}"
+
+	./configure \
+	--prefix=/usr \
+	--disable-static \
+	--enable-hashes=strong,glibc \
+	--enable-obsolete-api=no \
+	--disable-failure-tokens
+
+	make
+}
+
+package() {
+	cd "${pkgname}-${pkgver}"
+
+	make DESTDIR="${pkgdir}" install
+}
