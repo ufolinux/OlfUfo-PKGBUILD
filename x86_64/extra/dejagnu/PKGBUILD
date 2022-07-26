@@ -1,0 +1,21 @@
+pkgname=dejagnu
+pkgver=1.6.3
+pkgrel=1
+arch=('x86_64')
+makedepends=(expect)
+source=(https://ftp.gnu.org/gnu/dejagnu/dejagnu-$pkgver.tar.gz)
+
+build() {
+        cd $pkgname-$pkgver
+        mkdir -v build                                         &&
+        cd    build                                            &&
+
+        ./configure --prefix=/usr
+        make
+}
+
+package() {
+	cd $pkgname-$pkgver
+
+        make DESTDIR=$pkgdir install
+}
