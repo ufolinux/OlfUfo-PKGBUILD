@@ -6,16 +6,14 @@ makedepends=(expect)
 source=(https://ftp.gnu.org/gnu/dejagnu/dejagnu-$pkgver.tar.gz)
 
 build() {
-        cd $pkgname-$pkgver
-        mkdir -v build                                         &&
-        cd    build                                            &&
-
-        ./configure --prefix=/usr
-        make
+        mkdir -p build
+	cd build
+	../$pkgname-$pkgver/configure --prefix=/usr
+	make
 }
 
 package() {
-	cd $pkgname-$pkgver
+	cd build
 
-        make DESTDIR=$pkgdir install
+	make DESTDIR=$pkgdir install
 }
