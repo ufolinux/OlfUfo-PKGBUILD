@@ -18,5 +18,4 @@ package() {
     cd expect${pkgver}
 
     make DESTDIR="$pkgdir" install
-    ln -svf expect${pkgver%.*}/libexpect${pkgver%.*}.so /usr/lib
 }
