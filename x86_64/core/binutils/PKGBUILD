@@ -1,0 +1,33 @@
+pkgname=binutils
+pkgver=2.38
+pkgrel=1
+arch=('x86_64')
+depends=(glibc zlib readline elfutils flex)
+makedepends=(bc git)
+source=(https://ftp.gnu.org/gnu/binutils/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    mkdir -vp build
+    cd build
+
+    ../configure \
+    --prefix=/usr       \
+    --enable-gold       \
+    --enable-ld=default \
+    --enable-plugins    \
+    --enable-shared     \
+    --disable-werror    \
+    --enable-64-bit-bfd \
+    --with-system-zlib
+
+    make tooldir=/usr
+}
+
+package() {
+    cd $pkgname-$pkgver/build
+
+    make tooldir=/usr DESTDIR=$pkgdir install -j1
+    rm -fv /usr/lib/lib{bfd,ctf,ctf-nobfd,opcodes}.a
+}
