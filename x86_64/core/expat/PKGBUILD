@@ -3,7 +3,7 @@ pkgver=2.4.4
 pkgrel=1
 arch=('x86_64')
 depends=(glibc)
-source=(https://sourceforge.net/projects/expat/files/expat/$pkgver/expat-$pkgver.tar.bz2)
+source=(https://sourceforge.net/projects/expat/files/expat/$pkgver/expat-$pkgver.tar.bz2.asc)
 
 build() {
         cd $pkgname-$pkgver
