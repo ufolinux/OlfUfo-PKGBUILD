@@ -6,8 +6,9 @@ arch=('x86_64')
 license=('GPL3')
 url='https://www.gnu.org/software/coreutils/'
 depends=('glibc' 'acl' 'attr' 'gmp' 'libcap' 'openssl')
-source=("https://ftp.gnu.org/gnu/$pkgname/$pkgname-$pkgver.tar.xz"
-        'coreutils-9.0-i18n-1.patch', 'coreutils-9.0-chmod_fix-1.patch')
+source=(https://ftp.gnu.org/gnu/$pkgname/$pkgname-$pkgver.tar.xz
+coreutils-9.0-i18n-1.patch
+coreutils-9.0-chmod_fix-1.patch)
 
 prepare() {
 	cd $pkgname-$pkgver
