@@ -1,0 +1,49 @@
+pkgname=systemd
+pkgver=251
+pkgrel=1
+arch=('x86_64')
+depends=('acl' 'gperf' 'lz4' 'xz' 'linux-pam' 'elfutils'
+	'kmod' 'libcap' 'libidn2' 'libgcrypt'
+	'libxslt' 'util-linux'
+	'shadow' 'gnu-efi'
+	'libxkbcommon'
+	'bash-completion' 'p11-kit'
+	'gnutls')
+makedepends=('meson' 'docbook-xsl' 'git' 'rsync' 'intltool' 'python3-pip')
+source=(https://github.com/systemd/systemd/archive/v251/systemd-251.tar.gz
+		systemd-251-glibc_2.36_fix-1.patch)
+
+build() {
+        cd $pkgname-$pkgver
+		patch -Np1 -i systemd-251-glibc_2.36_fix-1.patch
+		sed -i -e 's/GROUP="render"/GROUP="video"/' \
+				-e 's/GROUP="sgx", //' rules.d/50-udev-default.rules.in
+        mkdir -p build
+		cd       build
+
+        meson --prefix=/usr                 \
+				--buildtype=release           \
+				-Ddefault-dnssec=no           \
+				-Dfirstboot=false             \
+				-Dinstall-tests=false         \
+				-Dldconfig=false              \
+				-Dsysusers=false              \
+				-Drpmmacrosdir=no             \
+				-Dhomed=false                 \
+				-Duserdb=false                \
+				-Dman=false                   \
+				-Dmode=release                \
+				-Dpamconfdir=no               \
+			-Ddocdir=/usr/share/doc/systemd-251 \
+			..
+
+		ninja
+}
+
+package() {
+		cd $pkgname-$pkgver/build
+
+		LANG=en_US.UTF-8 ninja
+		LANG=en_US.UTF-8 DESTDIR=$pkgdir PREFIX=$pkgdir ninja install
+
+}
