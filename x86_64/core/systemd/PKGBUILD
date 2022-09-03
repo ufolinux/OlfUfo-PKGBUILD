@@ -11,7 +11,7 @@ depends=('acl' 'gperf' 'lz4' 'xz' 'linux-pam' 'elfutils'
 	'gnutls')
 makedepends=('meson' 'docbook-xsl' 'git' 'rsync' 'intltool' 'python3-pip')
 source=(https://github.com/systemd/systemd/archive/v251/systemd-251.tar.gz
-		systemd-251-glibc_2.36_fix-1.patch)
+		../systemd-251-glibc_2.36_fix-1.patch)
 
 build() {
         cd $pkgname-$pkgver
