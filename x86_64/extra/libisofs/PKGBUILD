@@ -7,13 +7,13 @@ source=(https://files.libburnia-project.org/releases/libisofs-$pkgver.tar.gz
 	efi_boot_size.patch)
 
 prepare() {
-	cd $pkgname
+	cd $pkgname-$pkgver
 
 	patch -p0 -i ../efi_boot_size.patch
 }
 
 build() {
-        cd $pkgname
+        cd $pkgname-$pkgver
 	
 	./bootstrap
 	./configure --prefix=/usr         \
@@ -24,6 +24,6 @@ build() {
 }
 
 package() {
-	cd $pkgname
+	cd $pkgname-$pkgver
 	make DESTDIR=$pkgdir install
 }
