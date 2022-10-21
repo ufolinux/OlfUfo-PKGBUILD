@@ -5,7 +5,7 @@ arch=('x86_64')
 source=(https://files.libburnia-project.org/releases/libburn-$pkgver.tar.gz)
 
 build() {
-        cd $pkgname
+        cd $pkgname-$pkgver
 	
 	./bootstrap
 	./configure --prefix=/usr         \
