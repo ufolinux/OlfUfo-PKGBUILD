@@ -7,7 +7,7 @@ source=(https://files.libburnia-project.org/releases/libisoburn-$pkgver.tar.gz
 	efi_size_change.patch)
 
 prepare() {
-	cd $pkgname
+	cd $pkgname-$pkgver
 
 	patch -p0 -i ../efi_size_change.patch
 }
