@@ -13,7 +13,7 @@ prepare() {
 }
 
 build() {
-        cd $pkgname
+        cd $pkgname-$pkgver
 	
 	./bootstrap
 	./configure --prefix=/usr         \
@@ -24,6 +24,6 @@ build() {
 }
 
 package() {
-	cd $pkgname
+	cd $pkgname-$pkgver
 	make DESTDIR=$pkgdir install
 }
