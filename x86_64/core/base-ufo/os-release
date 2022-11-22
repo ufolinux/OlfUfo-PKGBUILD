@@ -1,0 +1,7 @@
+NAME="Ufo Linux"
+VERSION="2022.1"
+ID=Ufo
+ID_LIKE=Ufo
+PRETTY_NAME="Ufo Linux 2022.1 kepler"
+VERSION_ID="2022.1"
+VERSION_CODENAME="kepler"
