@@ -1,0 +1,26 @@
+pkgname=icu
+pkgver=70.1
+aver=70
+bver=1
+pkgrel=1
+arch=('x86_64')
+depends=(gcc bash)
+makedepends=(llvm python3 doxygen)
+source=(https://github.com/unicode-org/icu/releases/download/release-$aver-$bver/icu4c-${aver}_$bver-src.tgz)
+
+build() {
+	cd $pkgname
+
+	cd source
+
+	./configure \
+	--prefix=/usr
+
+	make
+}
+
+package() {
+	cd $pkgname/source
+
+	make DESTDIR=$pkgdir install
+}
