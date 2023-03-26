@@ -3,7 +3,7 @@ pkgver=2023.1
 pkgrel=1
 arch=('x86_64')
 depends=(zstd bash glibc libarchive curl gpgme libassuan)
-commitid=a7ccf5b721d6241d59d24428d6d77566bbb71ff4
+commitid=153ea35d6b981d70259345da0fbfd3209d590807
 replaces=(pacman)
 source=(git+https://github.com/ufolinux/kepler#commit=$commitid)
 
