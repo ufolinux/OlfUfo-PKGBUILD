@@ -1,6 +1,9 @@
+# Maintainer:  Bartłomiej Piotrowski <bpiotrowski@archlinux.org>
+# Contributor: Thomas Bächler <thomas@archlinux.org>
+
 pkgname=wpa_supplicant
 pkgver=2.9
-pkgrel=1
+pkgrel=3
 pkgdesc='A utility providing key negotiation for WPA wireless networks'
 url='https://w1.fi/wpa_supplicant/'
 arch=(x86_64)

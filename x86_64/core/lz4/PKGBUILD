@@ -1,6 +1,6 @@
 pkgname=lz4
 pkgver=1.9.3
-pkgrel=1
+pkgrel=2
 arch=('x86_64')
 depends=(glibc)
 source=(https://github.com/lz4/lz4/archive/v$pkgver/lz4-v$pkgver.tar.gz)

@@ -1,6 +1,6 @@
 pkgname=filesystem
 pkgver=1
-pkgrel=1
+pkgrel=10
 arch=('x86_64')
 backup=(etc/dircolors.sh
         etc/extrapaths.sh
@@ -45,7 +45,7 @@ package() {
 	mkdir -pv $pkgdir/{bin,boot,etc/{opt,sysconfig},home,lib/firmware,mnt,opt}
 	mkdir -pv $pkgdir/{media/{floppy,cdrom},sbin,srv,var}
 	install -dv -m 0750 $pkgdir/root
-	install -dv -m 1777 $pkgdir/tmp /var/tmp
+	install -dv -m 1777 $pkgdir/tmp $pkgdir/var/tmp
 	mkdir -pv $pkgdir/usr/{,local/}{bin,include,lib,sbin,src}
 	ln -sf lib $pkgdir/usr/lib64
 	mkdir -pv $pkgdir/usr/{,local/}share/{color,dict,doc,info,locale,man}

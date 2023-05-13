@@ -1,6 +1,6 @@
 pkgname=zlib
-pkgver=1.2.12
-pkgrel=1
+pkgver=1.2.11
+pkgrel=2
 arch=('x86_64')
 depends=(glibc)
 source=(https://zlib.net/$pkgname-$pkgver.tar.xz)
@@ -19,5 +19,4 @@ package() {
         mkdir -p $pkgdir/lib
         mv -v $pkgdir/usr/lib/libz.so.* $pkgdir/lib
         ln -sfv ../../lib/$(readlink $pkgdir/usr/lib/libz.so) $pkgdir/usr/lib/libz.so
-        rm -fv /usr/lib/libz.a
 }

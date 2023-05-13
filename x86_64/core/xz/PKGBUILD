@@ -1,24 +1,26 @@
 pkgname=xz
-pkgver=5.2.5
-pkgrel=2
+pkgver=5.4.3
+pkgrel=1
 arch=('x86_64')
-depends=(bash)
-source=(https://tukaani.org/$pkgname/$pkgname-$pkgver.tar.xz)
+depends=(bash glibc)
+makedepends=()
+source=()
+
+prepare() {
+	cd $pkgname-$pkgver
+
+	./configure \
+	--prefix=/usr
+}
 
 build() {
-        cd $pkgname-$pkgver
+	cd $pkgname-$pkgver
 
-        ./configure --prefix=/usr \
-                    --disable-static
-        make
+	make
 }
 
 package() {
-        cd $pkgname-$pkgver
-        make DESTDIR=$pkgdir install
+	cd $pkgname-$pkgver
 
-        mkdir -pv $pkgdir/{bin,lib}
-        mv -v   $pkgdir/usr/bin/{lzma,unlzma,lzcat,xz,unxz,xzcat} $pkgdir/bin
-        mv -v $pkgdir/usr/lib/liblzma.so.* $pkgdir/lib
-        ln -svf ../../lib/$(readlink $pkgdir/usr/lib/liblzma.so) $pkgdir/usr/lib/liblzma.so
+	make DESTDIR=$pkgdir install
 }

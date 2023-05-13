@@ -1,6 +1,6 @@
 pkgname=kmod
 pkgver=29
-pkgrel=1
+pkgrel=2
 arch=('x86_64')
 depends=(glibc zlib openssl xz zstd)
 source=(https://www.kernel.org/pub/linux/utils/kernel/$pkgname/$pkgname-$pkgver.tar.xz)
@@ -19,7 +19,7 @@ build() {
 }
 
 package() {
-	      cd $pkgname-$pkgver
+	cd $pkgname-$pkgver
         make DESTDIR=$pkgdir install
 
         mkdir -p $pkgdir/sbin

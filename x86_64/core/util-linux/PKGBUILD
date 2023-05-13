@@ -1,6 +1,6 @@
 pkgname=util-linux
 pkgver=2.37.2
-pkgrel=1
+pkgrel=6
 arch=('x86_64')
 depends=('python3' 'systemd' 'linux-pam')
 source=(https://www.kernel.org/pub/linux/utils/$pkgname/v${pkgver::4}/$pkgname-$pkgver.tar.xz

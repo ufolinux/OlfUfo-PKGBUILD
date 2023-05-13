@@ -1,6 +1,6 @@
 pkgname=dbus
 pkgver=1.12.20
-pkgrel=1
+pkgrel=5
 arch=('x86_64')
 depends=(libx11 systemd expat)
 source=(https://dbus.freedesktop.org/releases/dbus/dbus-$pkgver.tar.gz

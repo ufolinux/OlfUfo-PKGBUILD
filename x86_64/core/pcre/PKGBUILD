@@ -1,6 +1,6 @@
 pkgname=pcre
 pkgver=8.45
-pkgrel=1
+pkgrel=2
 arch=('x86_64')
 depends=(valgrind)
 source=(https://sourceforge.net/projects/pcre/files/pcre/8.45/pcre-8.45.tar.bz2)

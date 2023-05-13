@@ -1,5 +1,5 @@
 pkgname=libxcrypt
-pkgver=4.4.27
+pkgver=4.4.28
 pkgrel=1
 pkgdesc='Modern library for one-way hashing of passwords'
 arch=('x86_64')
@@ -11,18 +11,28 @@ source=("${url}/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.xz")
 build() {
 	cd "${pkgname}-${pkgver}"
 
-	./configure \
+	mkdir build build-compat
+
+	cd build
+	./../configure \
 	--prefix=/usr \
-	--disable-static \
 	--enable-hashes=strong,glibc \
 	--enable-obsolete-api=no \
 	--disable-failure-tokens
 
-	make
+	make -j4
+
+	cd ../build-compat
+	./../configure \
+	--prefix=/usr \
+	--enable-hashes=strong,glibc \
+	--enable-obsolete-api=glibc \
+	--disable-failure-tokens
 }
 
 package() {
 	cd "${pkgname}-${pkgver}"
 
-	make DESTDIR="${pkgdir}" install
+	make -C build DESTDIR="${pkgdir}" install
+	make -C build-compat DESTDIR="${pkgdir}" install
 }

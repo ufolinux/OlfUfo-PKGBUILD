@@ -1,6 +1,6 @@
 pkgname=fontconfig
 pkgver=2.14.0
-pkgrel=1
+pkgrel=2
 arch=('x86_64')
 depends=(glibc libpng expat zstd bzip2 readline freetype2)
 source=(https://freedesktop.org/software/$pkgname/release/$pkgname-$pkgver.tar.gz
@@ -34,7 +34,8 @@ build() {
 	#ninja
 
 	./../configure \
-	--prefix=/usr
+	--prefix=/usr \
+	--sysconfdir=/etc
 
 	make
 }
@@ -45,6 +46,8 @@ package() {
 	export FONTCONFIG_PATH=/etc/fonts
 	#DESTDIR=$pkgdir ninja install
 	make DESTDIR=$pkgdir install
+
+	mkdir -p $pkgdir/etc/fonts/conf.d/
 
 	cd $srcdir
 

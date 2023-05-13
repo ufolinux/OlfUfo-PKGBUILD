@@ -1,6 +1,6 @@
 pkgname=libcap
 pkgver=2.63
-pkgrel=1
+pkgrel=3
 arch=('x86_64')
 depends=('glibc' 'linux-pam')
 source=(https://www.kernel.org/pub/linux/libs/security/linux-privs/libcap2/$pkgname-$pkgver.tar.xz)

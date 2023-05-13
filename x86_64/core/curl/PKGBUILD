@@ -6,6 +6,7 @@ depends=(ca-certificates nghttp2 brotli libidn2 gnutls libpsl openssl zlib zstd)
 source=(https://curl.haxx.se/download/$pkgname-$pkgver.tar.xz)
 
 prepare() {
+	# We also want gnutls libs for steam ( possibly for other pkg's too )
 	cp -rf $pkgname-$pkgver $pkgname-$pkgver-gnutls
 }
 

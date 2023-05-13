@@ -1,8 +1,9 @@
 pkgname=attr
 pkgver=2.5.1
 arch=('x86_64')
-pkgrel=1
+pkgrel=4
 depends=(glibc)
+makedepends=(grep gawk file)
 source=(https://download.savannah.gnu.org/releases/$pkgname/$pkgname-$pkgver.tar.gz)
 
 build() {
@@ -19,6 +20,4 @@ package() {
 	cd $pkgname-$pkgver
 
         make DESTDIR=$pkgdir install
-
-        ln -sfv ../../lib/$(readlink $pkgdir/usr/lib/libattr.so) $pkgdir/usr/lib/libattr.so
 }

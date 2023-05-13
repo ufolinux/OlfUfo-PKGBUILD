@@ -18,9 +18,14 @@ build() {
     --enable-ld=default \
     --enable-plugins    \
     --enable-shared     \
+    --enable-gold       \
+    --enable-targets=all \
+    --with-pic          \
     --disable-werror    \
     --enable-64-bit-bfd \
-    --with-system-zlib
+    --with-system-zlib  \
+    --enable-multilib   \
+    --with-lib-path=/usr/lib:/lib:/usr/lib32
 
     make tooldir=/usr
 }
@@ -29,5 +34,4 @@ package() {
     cd $pkgname-$pkgver/build
 
     make tooldir=/usr DESTDIR=$pkgdir install -j1
-    rm -fv /usr/lib/lib{bfd,ctf,ctf-nobfd,opcodes}.a
 }

@@ -1,46 +1,20 @@
-Submitted by:            Xi Ruoyao <xry111@mengyan1223.wang>
-Date:                    2022-01-28
-Initial Package Version: 9.0
-Upstream Status:         Applied
-Origin:                  Upstream git repository (sha: e8b56ebd5)
-Description:             Fixes an issue in chmod breaking glibc-2.35 test
-
 From e8b56ebd536e82b15542a00c888109471936bfda Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?P=C3=A1draig=20Brady?= <P@draigBrady.com>
+From: =?utf8?q?P=C3=A1draig=20Brady?= <P@draigBrady.com>
 Date: Fri, 24 Sep 2021 20:57:41 +0100
-Subject: chmod: fix exit status when ignoring symlinks
+Subject: [PATCH] chmod: fix exit status when ignoring symlinks
 
 * src/chmod.c: Reorder enum so CH_NOT_APPLIED
 can be treated as a non error.
 * tests/chmod/ignore-symlink.sh: A new test.
 * tests/local.mk: Reference the new test.
-* NEWS: Mention the bug fix.
 Fixes https://bugs.gnu.org/50784
 ---
- NEWS                          |  6 ++++++
  src/chmod.c                   |  4 ++--
  tests/chmod/ignore-symlink.sh | 31 +++++++++++++++++++++++++++++++
  tests/local.mk                |  1 +
  4 files changed, 40 insertions(+), 2 deletions(-)
  create mode 100755 tests/chmod/ignore-symlink.sh
 
-diff --git a/NEWS b/NEWS
-index a1470a7..1cb3c28 100644
---- a/NEWS
-+++ b/NEWS
-@@ -2,6 +2,12 @@ GNU coreutils NEWS                                    -*- outline -*-
- 
- * Noteworthy changes in release ?.? (????-??-??) [?]
- 
-+** Bug fixes
-+
-+  chmod -R no longer exits with error status when encountering symlinks.
-+  All files would be processed correctly, but the exit status was incorrect.
-+  [bug introduced in coreutils-9.0]
-+
- 
- * Noteworthy changes in release 9.0 (2021-09-24) [stable]
- 
 diff --git a/src/chmod.c b/src/chmod.c
 index 37b04f5..57ac47f 100644
 --- a/src/chmod.c
@@ -114,5 +88,5 @@ index 228d0e3..b5b893f 100644
    tests/chmod/octal.sh				\
    tests/chmod/setgid.sh				\
 -- 
-cgit v1.1
+1.9.1
 

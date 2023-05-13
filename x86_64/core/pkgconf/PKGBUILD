@@ -1,6 +1,6 @@
 pkgname=pkgconf
 pkgver=1.8.0
-pkgrel=1
+pkgrel=2
 arch=('x86_64')
 depends=(glibc bash)
 source=(http://distfiles.dereferenced.org/$pkgname/$pkgname-$pkgver.tar.xz

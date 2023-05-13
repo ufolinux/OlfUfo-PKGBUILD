@@ -1,6 +1,6 @@
 pkgname=dhcpcd
 pkgver=9.4.1
-pkgrel=1
+pkgrel=3
 arch=('x86_64')
 depends=(glibc systemd libgudev libmd)
 install=$pkgname.install

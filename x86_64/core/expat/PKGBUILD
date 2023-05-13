@@ -1,5 +1,5 @@
 pkgname=expat
-pkgver=2.4.6
+pkgver=2.4.4
 pkgrel=1
 arch=('x86_64')
 depends=(glibc)
@@ -7,15 +7,18 @@ source=(https://sourceforge.net/projects/expat/files/expat/$pkgver/expat-$pkgver
 
 build() {
         cd $pkgname-$pkgver
+
+        # fix a problem with the regression tests
         sed -i 's|usr/bin/env |bin/|' run.sh.in
-        ./configure	\
-        --prefix=/usr
+
+	./configure	\
+	--prefix=/usr
 
         make
 }
 
 package() {
-        cd $pkgname-$pkgver
+	cd $pkgname-$pkgver
 
         make DESTDIR=$pkgdir install
 }

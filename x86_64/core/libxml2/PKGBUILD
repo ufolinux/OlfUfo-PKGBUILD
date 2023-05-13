@@ -1,6 +1,6 @@
 pkgname=libxml2
 pkgver=2.9.12
-pkgrel=1
+pkgrel=5
 arch=('x86_64')
 depends=(icu readline zlib ncurses xz)
 install=libxml2.install
