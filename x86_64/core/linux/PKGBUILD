@@ -5,7 +5,8 @@ pkgdesc='Linux'
 arch=('x86_64')
 options=('!strip' 'emptydirs')
 makedepends=(rsync)
-source=(https://github.com/ufolinux/linux/archive/refs/heads/$pkgver-ufolinux.tar.gz)
+source=(https://github.com/ufolinux/linux/archive/refs/heads/$pkgver-ufolinux.tar.gz
+	config)
 
 # Deprecated as we ship modules/headers in 1 pkg now
 replaces=(linux-api-headers)
@@ -28,13 +29,15 @@ build() {
 	cd linux-$pkgver-ufolinux
 
 	echo "[!]: Getting up default config of ufolinux"
+	# Replace src given config with local one
+	cp -f $srcdir/config arch/x86/configs/ufolinux_defconfig
 	make ufolinux_defconfig
 
 	echo "[!]: Started making all"
-	make all -j7
+	make all -j2
 
 	echo "[!]: Making headers"
-	make headers -j7
+	make headers
 }
 
 package() {
