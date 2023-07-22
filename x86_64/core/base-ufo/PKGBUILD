@@ -19,7 +19,7 @@ depends=(
 	linux linux-firmware
 
 	# pkg manager
-	pacman)
+	kepler)
 
 build() {
 	mkdir -p $pkgname-$pkgver

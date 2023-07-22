@@ -17,7 +17,7 @@ depends=(
 	findutils nghttp2
 
 	# pkg manager
-	pacman)
+	kepler)
 
 build() {
 	mkdir -p $pkgname-$pkgver
