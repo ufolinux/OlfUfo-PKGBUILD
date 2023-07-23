@@ -1,4 +1,4 @@
-pkgname=base-ufo
+pkgname=base-system
 pkgver=2022.1
 pkgrel=1
 pkgdesc="Basic packages required for a bootable ufo system"

@@ -1,9 +1,9 @@
 pkgname=neofetch
 pkgver=3.2.0.r47.gc3c6404
 pkgrel=1
-pkgdesc="A CLI system information tool written in BASH that supports displaying images."
+pkgdesc="A CLI system information tool written in BASH."
 arch=('any')
-url="https://github.com/ufolinux/${pkgname}"
+commitid=ddef307b616c545054d1dd3b1c428013706b5e8c
 license=('MIT')
 provides=($pkgname)
 conflicts=($pkgname)
@@ -23,8 +23,7 @@ optdepends=(
   'xorg-xwininfo: See https://github.com/dylanaraps/neofetch/wiki/Images-in-the-terminal'
 )
 makedepends=('git')
-source=("$pkgname::git+https://github.com/ufolinux/neofetch.git")
-md5sums=('SKIP')
+source=(git+https://github.com/ufolinux/neofetch#commit=$commitid)
 
 pkgver() {
   cd $pkgname
