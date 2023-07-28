@@ -1,5 +1,5 @@
 pkgname=base-system
-pkgver=2022.1
+pkgver=2023.1
 pkgrel=1
 pkgdesc="Basic packages required for a bootable ufo system"
 arch=('x86_64')
@@ -13,7 +13,7 @@ depends=(
 	bash curl e2fsprogs gawk inetutils libevent libx11 openssl pkgconf squashfs-tools wget
 	binutils dbus gettext intltool libffi libxcrypt p11-kit polkit syslinux which
 	bzip2 dhcpcd expat glib2 iproute2 libgudev libxml2 popt systemd wpa_supplicant
-	findutils nghttp2
+	findutils nghttp2 nano
 
 	# Needed to boot base-ufo
 	linux linux-firmware
