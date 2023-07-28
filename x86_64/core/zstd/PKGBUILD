@@ -17,5 +17,4 @@ package() {
 	make PREFIX=/usr DESTDIR=$pkgdir install
 	ln -sf /usr/bin/zstd $pkgdir/usr/bin/zstdmt
 	install -Dm 755 contrib/pzstd/pzstd -t $pkgdir/usr/bin/
-	rm -v /usr/lib/libzstd.a
 }

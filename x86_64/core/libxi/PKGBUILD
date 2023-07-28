@@ -2,7 +2,7 @@ pkgname=libxi
 pkgver=1.7.10
 pkgrel=1
 arch=('x86_64')
-makedepends=(libxtrans util-macros xorgproto)
+makedepends=(libxtrans util-macros xorgproto libxfixes)
 source=(https://xorg.freedesktop.org/releases/individual/lib/libXi-$pkgver.tar.bz2)
 
 build() {
