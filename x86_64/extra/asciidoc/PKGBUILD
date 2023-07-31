@@ -1,0 +1,20 @@
+pkgname=asciidoc
+pkgver=8.6.9
+pkgrel=1
+arch=(x86_64)
+depends=(python2)
+source=(https://downloads.sourceforge.net/$pkgname/$pkgname-$pkgver.tar.gz)
+
+build() {
+	cd $pkgname-$pkgver
+	./configure --prefix=/usr     \
+				--sysconfdir=/etc \
+				--docdir=/usr/share/doc/asciidoc-8.6.9
+	make
+}
+
+package() {
+	cd $pkgname-$pkgver
+	
+	make DESTDIR=$pkgdir install
+}
