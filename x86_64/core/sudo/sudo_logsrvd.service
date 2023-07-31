@@ -1,5 +1,5 @@
 [Unit]
-Description=Suod central log server
+Description=Sudo central log server
 After=syslog.target network.target auditd.service
 
 [Service]
